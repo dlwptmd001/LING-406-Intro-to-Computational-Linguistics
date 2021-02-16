@@ -1,0 +1,30 @@
+<System Description>
+
+Jaeseung Lee
+
+1. How to run the code
+
+    - Locate file that you'd like to extract date & time in "../Data/Input", and named as "input.txt".
+    - Run all cells
+    - Check "output.txt" which is located in "../Data/Output".
+
+
+    
+2. Brief System Structure
+
+    - Load txt file, read line by line and store all sentences in one list type of data structure
+    - Start loop to iterate all the sentences in the list
+        - Start nested loop to iterate all patterns of regex
+        - Append matching dates & time to the "extracted" list
+    - Start loop to iterate "extracted" list to identify whether it is the longest expression or not
+        - Check nth component contains (n+1)th component
+            - if yes: replace with "del" which is string type
+    - Open "output.txt" file
+        - Iterate list that have matching dates & time
+        - Only output list type of components to the output file
+        
+Other details are commented on the code
+        
+3. Designed Design
+
+Rather than using tokenizer and fewer patterns, I only used several regex patterns. The reason is that when I use tokenizer or split the sentences using comma or period, many cases of fixed dates splitted into two or three seperate lists that make much harder to capture dates & time. As I used several regex patterns, the most difficult problem I faced was let program to only identify and extract the longest expression from the one sentence, not with sub group of the longest expression. That's why I loop over matched list in one sentence, and check whether it is sub-captured corpus from the previous component of the list. After repeating this process over all sentences, then add caputred corpus to the new list which will contains identified corpus from the previous process.
